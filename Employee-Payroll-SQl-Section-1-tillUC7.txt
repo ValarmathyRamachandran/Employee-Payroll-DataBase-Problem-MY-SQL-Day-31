@@ -1,0 +1,50 @@
+use  payroll_service	;
+create table employee_payroll 
+( 
+EmployeeId int AUTO_INCREMENT PRIMARY KEY,
+EmployeeName varchar(255),
+Salary float,
+StartDate Date
+) ;
+
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Abisha', 40000, curdate());
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Abinay', 45000, curdate());
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Bala', 60000, curdate());
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Vijay', 70000, curdate());
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Bill', 60000, curdate());
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Varsha', 40000, curdate());
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Usha', 70000, curdate());
+insert 	into employee_payroll(EmployeeName,Salary,StartDate)values ('Samantha', 60000, curdate());
+use payroll_service	;
+desc employee_payroll;
+select * from employee_payroll;
+
+select Salary from employee_payroll WHERE EmployeeName ='Bill';
+
+SELECT * from employee_payroll WHERE StartDate between cast('2021-01-01' as Date ) AND DATE(NOW()) ;
+
+ALTER TABLE employee_payroll ADD Gender char(1) AFTER EmployeeName;
+
+UPDATE employee_payroll 
+SET Gender ='M'
+WHERE EmployeeName ='Abinay';
+
+UPDATE employee_payroll SET Gender ='F'WHERE EmployeeId IN (1, 6, 7, 8);
+UPDATE employee_payroll SET Gender ='M'WHERE EmployeeId NOT IN (1,6,7,8) ;
+
+SELECT SUM(Salary) from employee_payroll WHERE Gender = 'F' GROUP BY Gender;
+SELECT SUM(Salary) from employee_payroll WHERE Gender = 'M' GROUP BY Gender;
+
+SELECT avg(Salary) from employee_payroll WHERE Gender = 'F' GROUP BY Gender;
+SELECT avg(Salary) from employee_payroll WHERE Gender = 'M' GROUP BY Gender;
+
+SELECT min(Salary) from employee_payroll WHERE Gender = 'F' GROUP BY Gender;
+SELECT min(Salary) from employee_payroll WHERE Gender = 'M' GROUP BY Gender;
+
+SELECT max(Salary) from employee_payroll WHERE Gender = 'F' GROUP BY Gender;
+SELECT max(Salary) from employee_payroll WHERE Gender = 'M' GROUP BY Gender;
+
+SELECT count(Salary) from employee_payroll WHERE Gender = 'F' GROUP BY Gender;
+SELECT count(Salary) from employee_payroll WHERE Gender = 'M' GROUP BY Gender;
+
+
