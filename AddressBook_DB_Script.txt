@@ -44,7 +44,29 @@ create table AddressBook(
 		(AddressBook_Name,Type,First_Name,Last_Name,Address,City,State,Zip,Phone_Number,Email) values
 		("CBook","Family","Charlie","Sam","25,TYU","Bangalore","Karnataka",800123,7654321900,"charlie.s@gmail.com"),
 		("MBook","Friends","Mukesh","Akash","345,NUY","AndhraPradesh","Chitore",690865,9876543214,"mukesha@gmail.com");  -- UC 11
-        
+
+create table relation_type(
+Type_Id int not null,
+Type varchar(50) not null,
+primary key(Type)
+);
+
+insert into relation_type
+(Type_Id,Type)
+ values
+ (1,"Family"),
+ (2,"Friends"),
+ (3,"Profession");
+ alter table AddressBook add foreign key(Type) references relation_type(Type);
+ 
+ SELECT * FROM AddressBook inner join relation_type on AddressBook.Type = relation_type.Type;
+ SELECT * FROM AddressBook inner join relation_type rt on AddressBook.Type = rt.Type where AddressBook.City = "Chennai" or AddressBook.State = "TamilNadu";
+ select City,count(*) from AddressBook ad inner join relation_type rt on ad.Type = rt.Type group by ad.City;
+ select State,count(*) from AddressBook ad inner join relation_type rt on ad.Type = rt.Type group by ad.State;
+ select * from AddressBook ad inner join relation_type rt on ad.Type = rt.Type order by ad.First_Name;
+ select ad.Type,count(*) from AddressBook ad inner join relation_type rt on ad.Type = rt.Type group by Type;
+
+ 
         
         
          
