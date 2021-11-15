@@ -1,4 +1,5 @@
-use  payroll_service	;
+-- section1
+use  payroll_service;
 create table employee_payroll 
 ( 
 EmployeeId int AUTO_INCREMENT PRIMARY KEY,
@@ -46,5 +47,12 @@ SELECT max(Salary) from employee_payroll WHERE Gender = 'M' GROUP BY Gender;
 
 SELECT count(Salary) from employee_payroll WHERE Gender = 'F' GROUP BY Gender;
 SELECT count(Salary) from employee_payroll WHERE Gender = 'M' GROUP BY Gender;
+-- section 2 [UC8]
+ALTER TABLE employee_payroll ADD (PhoneNumber varchar(50), Address varchar(255) ); 
+ALTER TABLE employee_payroll ADD (Department varchar(50) NOT NULL default '{}')  ;
 
+select * from  employee_payroll ;
+ALTER TABLE employee_payroll ADD (BasicPay float,Deductions float,TaxablePay float,Tax float, NetPay float);
 
+insert 	into employee_payroll(EmployeeName,Salary,StartDate,Department,Gender,BasicPay ,Deductions ,TaxablePay ,Tax , NetPay)values ('Terissa', 50000, curdate(),'Sales and Marketing','F',
+60000, 10000,10000,10000,50000);
